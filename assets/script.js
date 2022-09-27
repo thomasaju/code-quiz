@@ -49,12 +49,15 @@ var questions =[    //created
 ];
 
 
+
+
+
+
 //WHN START BUTTON CLICK THE CLOCK INITIATED
 
 var totalTime = 50;
-function firstQuiz(){
-
-    totalTime = 50;
+function startQuiz(){
+    totalTime--;
     timeRemaining.textContent = totalTime
 
 }
