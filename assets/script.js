@@ -19,3 +19,49 @@ var backBtn = document.querySelector("#backBtn");
 var clearScoreBtn = document.querySelector("#clearScoreBtn");
 var highScore = document.querySelector("#highScore");
 var listScores = document.querySelector("#listScores");
+
+var questions =[    //created 
+{
+    question : "whhhaat is ..?",
+    choices : ["a.aa","b.Bb", "c.Cc", "d.Dd"],
+    answer : "d.Dd"
+},
+{
+    question : "whhhaat is ..?",
+    choices : ["a.qq","b.Bb", "c.Cc", "d.Dd"],
+    answer : "d.Dd"
+},
+{
+    question : "whhhaat is ..?",
+    choices : ["a.ww","b.Bb", "c.Cc", "d.Dd"],
+    answer : "d.Dd"
+},
+{
+    question : "whhhaat is ..?",
+    choices : ["a.ee","b.Bb", "c.Cc", "d.Dd"],
+    answer : "d.Dd"
+},
+{
+    question : "whhhaat is ..?",
+    choices : ["a.rr","b.Bb", "c.Cc", "d.Dd"],
+    answer : "d.Dd"
+}
+];
+
+
+//WHN START BUTTON CLICK THE CLOCK INITIATED
+
+var totalTime = 50;
+function firstQuiz(){
+
+    totalTime = 50;
+    timeRemaining.textContent = totalTime
+
+}
+
+
+
+
+
+
+
