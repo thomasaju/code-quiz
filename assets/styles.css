@@ -1,3 +1,28 @@
+
+
+
+
 body{
     background-color: rgb(142, 237, 206);
+    justify-content: center;
+    align-items: center;
+    
+}
+
+a{
+    color: rgb(159, 66, 66);
+    font-size: 20px;
+    
+}
+a:hover{
+    color: rgb(75, 14, 198);
+}
+#button{
+    background-color: blanchedalmond;
+
+}
+
+
+.hidden{
+   display: none;
 }
