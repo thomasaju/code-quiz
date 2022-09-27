@@ -1,7 +1,7 @@
 var clock = document.querySelector("#clock");
 var timeRemaining = document.querySelector("#timeRemaining");
 var timeOver = document.querySelector("#timeOver");
-var mainContent = document.querySelector("main-content");
+var mainContent = document.querySelector("#main-content");
 var startButton = document.querySelector("#start-button");
 var questionDivision= document.querySelector("#question-division");
 var quizQuestion = document.querySelector("#quiz-question")
@@ -54,15 +54,65 @@ var questions =[    //created
 
 
 //WHN START BUTTON CLICK THE CLOCK INITIATED
+var rightAns = 0;
+var qnum= 0;
+var qIndex = 0;
+var result;
+var totalTime = 80;
 
-var totalTime = 50;
+
 function startQuiz(){
-    totalTime--;
-    timeRemaining.textContent = totalTime
+    // qIndex = 0;
+    totalTime= 80;
+    timeRemaining.textContent = totalTime;
+    nameInput.textContent = "";
+
+    mainContent.style.display = "none";
+    questionDivision.style.display = "block";
+    // clock.style.display = "block";
+    // timeOver.style.display = "none";
+
+    var startClock = setInterval(function() {
+            totalTime --;
+            timeRemaining.textContent = totalTime;
+            if (totalTime == 0){
+                clearInterval(startClock);
+                // if (qIndex < questions.length - 1){
+                //     gameOver()
+                // }
+            }
+
+        }, 1000);
+
+        // showQuiz();
 
 }
 
+//  console.log(questions[qIndex].question);
+//  console.log(questions[qIndex].choices);
 
+
+
+// function showQuiz(){
+//     nextQuestion();
+// }
+
+
+// function nextQuestion() {
+//     quizQuestion.textContent = questions[qIndex].question;
+//     answerA.textContent = questions[qIndex].choices[0];
+//     answerB.textContent = questions[qIndex].choices[1];
+//     answerC.textContent = questions[qIndex].choices[2];
+//     answerD.textContent = questions[qIndex].choices[3];
+// }
+
+
+
+
+
+
+
+startButton.addEventListener("click", startQuiz);
 
 
 
