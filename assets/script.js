@@ -51,15 +51,13 @@ var questions =[    //created
 
 //WHN START BUTTON CLICK THE CLOCK INITIATED
 var rightAns = 0;
-var qnum= 0;
 var qIndex = 0;
-var result;
 var totalTime = 80;
 
 
 function startQuiz(){
-    // qIndex = 0;
-    totalTime= 80;
+    qIndex = 0;
+    totalTime= 20;
     timeRemaining.textContent = totalTime;
     nameInput.textContent = "";
 
@@ -71,10 +69,10 @@ function startQuiz(){
     var startClock = setInterval(function() {
             totalTime --;
             timeRemaining.textContent = totalTime;
-            if (totalTime == 0){
+            if (totalTime === 0){
                 clearInterval(startClock);
                 // if (qIndex < questions.length - 1){
-                //     gameOver()
+                //     quizFinished()
                 // }
             }
 
@@ -132,11 +130,40 @@ function quizFinished(){
     img.src = "./Images/over.webp";
     questionDivision.appendChild(img);
     finalPage.style.display = "block";
-    finalScore.textContent = rightAns;
+    finalScore.textContent = rightAns;//to show the score
     console.log(rightAns);
-    localStorage.setItem("finalscore", rightAns);
-
     
+    
+}
+
+localStorage.setItem("finalscore", rightAns);
+
+
+
+
+function setScores(event){
+    event.preventDefault();
+
+    if (nameInput.value === ""){
+        alert("Enter your Name");
+       return;
+    }
+
+    var savedScores = localStorage.getItem("scores");
+    var scoresArray;
+    if (savedScores === null){
+        scoresArray = [];
+    } else {
+        scoresArray = JSON.parse(savedScores)
+    }
+    var userScore = {
+        name: nameInput.value,
+        score: finalScore.textContent
+    };
+    console.log(userScore);
+
+
+
 
 
 }
@@ -183,7 +210,7 @@ answerB.addEventListener("click", optionB);
 answerC.addEventListener("click", optionC);
 answerD.addEventListener("click", optionD);
 
-
+// submitNameBtn.addEventListener("click", function(event);
 
 
 
