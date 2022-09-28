@@ -19,33 +19,29 @@ var backBtn = document.querySelector("#backBtn");
 var clearScoreBtn = document.querySelector("#clearScoreBtn");
 var highScore = document.querySelector("#highScore");
 var listScores = document.querySelector("#listScores");
+var optionList = document.querySelector("#option-list");
 
 var questions =[    //created 
 {
-    question : "whhhaat is ..?",
-    choices : ["a.aa","b.Bb", "c.Cc", "d.Dd"],
-    answer : "d.Dd"
+    question : "Javascript is an _______ language?",
+    choices : ["Object-Oriented","Object_Based", "Procedural", "None of the Above"],
+    answer : "Object-Oriented"
 },
 {
-    question : "hhaat is ..?",
-    choices : ["a.qq","b.Bb", "c.Cc", "d.Dd"],
-    answer : "d.Dd"
+    question : "Which of the following keywords is used to define a variable in Javascript?",
+    choices : ["Var","Let", "Both A & B", "None of the Above"],
+    answer : "Both A & B"
 },
 {
-    question : "waat is ..?",
-    choices : ["a.ww","b.Bb", "c.Cc", "d.Dd"],
-    answer : "d.Dd"
+    question : "How can a datatype be declared to be a constant type?",
+    choices : ["Const","Var", "Let", "None of the Above"],
+    answer : "Const"
 },
 {
-    question : "aat is ..?",
-    choices : ["a.ee","b.Bb", "c.Cc", "d.Dd"],
-    answer : "d.Dd"
+    question : "Which of the following are closures in Javascript?",
+    choices : ["Variables","Functions", "Objects", "All of the above"],
+    answer : "All of the above"
 },
-{
-    question : "at is ..?",
-    choices : ["a.rr","b.Bb", "c.Cc", "d.Dd"],
-    answer : "d.Dd"
-}
 ];
 
 
@@ -96,11 +92,11 @@ function displayQuiz(){
 
 function questionsFun(){
 
-    quizQuestion.textContent = questions[0].question;
-    answerA.textContent = questions[0].choices[0]
-    answerB.textContent = questions[0].choices[1]
-    answerC.textContent = questions[0].choices[2]
-    answerD.textContent = questions[0].choices[3]
+    quizQuestion.textContent = questions[qIndex].question;
+    answerA.textContent = questions[qIndex].choices[0]
+    answerB.textContent = questions[qIndex].choices[1]
+    answerC.textContent = questions[qIndex].choices[2]
+    answerD.textContent = questions[qIndex].choices[3]
 
 }
 function checkAnswer(answer) {
@@ -108,7 +104,7 @@ function checkAnswer(answer) {
     answerCheck.style.display= "block"
 
     if (questions[qIndex].answer === questions[qIndex].choices[answer]) {
-        // rightAns++
+        rightAns++
         answerCheck.textContent = "Correct";
         console.log(rightAns);
     } else {
@@ -116,31 +112,64 @@ function checkAnswer(answer) {
         timeRemaining.textContent = totalTime;
         answerCheck.textContent = "Wrong";
     }
-        
         qIndex++;
+
+
     if (qIndex < questions.length){
         questionsFun();
     } else {
-        alert("game over");
+        quizFinished();
     }
 
 }
 
-function chooseA() { checkAnswer(0); }
+function quizFinished(){
+    quizQuestion.style.display = "none";
+    answerCheck.style.display = "none";
+    optionList.style.display= "none";
+    clock.style.display = "none";
+    var img = document.createElement("img");
+    img.src = "./Images/over.webp";
+    questionDivision.appendChild(img);
+    finalPage.style.display = "block";
+    finalScore.textContent = rightAns;
+    console.log(finalScore);
 
-function chooseB() { checkAnswer(1); }
+}
 
-function chooseC() { checkAnswer(2); }
 
-function chooseD() { checkAnswer(3); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function optionA() { checkAnswer(0); }
+
+function optionB() { checkAnswer(1); }
+
+function optionC() { checkAnswer(2); }
+
+function optionD() { checkAnswer(3); }
 
 
 
 startButton.addEventListener("click", startQuiz);
-answerA.addEventListener("click", chooseA);
-answerB.addEventListener("click", chooseB);
-answerC.addEventListener("click", chooseC);
-answerD.addEventListener("click", chooseD);
+answerA.addEventListener("click", optionA);
+answerB.addEventListener("click", optionB);
+answerC.addEventListener("click", optionC);
+answerD.addEventListener("click", optionD);
 
 
 
