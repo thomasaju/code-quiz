@@ -133,9 +133,21 @@ function quizFinished(){
     questionDivision.appendChild(img);
     finalPage.style.display = "block";
     finalScore.textContent = rightAns;
-    console.log(finalScore);
+    console.log(rightAns);
+    localStorage.setItem("finalscore", rightAns);
+
+    
+
 
 }
+
+
+
+
+
+
+
+
 
 
 
