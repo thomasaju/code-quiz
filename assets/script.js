@@ -27,22 +27,22 @@ var questions =[    //created
     answer : "d.Dd"
 },
 {
-    question : "whhhaat is ..?",
+    question : "hhaat is ..?",
     choices : ["a.qq","b.Bb", "c.Cc", "d.Dd"],
     answer : "d.Dd"
 },
 {
-    question : "whhhaat is ..?",
+    question : "waat is ..?",
     choices : ["a.ww","b.Bb", "c.Cc", "d.Dd"],
     answer : "d.Dd"
 },
 {
-    question : "whhhaat is ..?",
+    question : "aat is ..?",
     choices : ["a.ee","b.Bb", "c.Cc", "d.Dd"],
     answer : "d.Dd"
 },
 {
-    question : "whhhaat is ..?",
+    question : "at is ..?",
     choices : ["a.rr","b.Bb", "c.Cc", "d.Dd"],
     answer : "d.Dd"
 }
@@ -69,7 +69,7 @@ function startQuiz(){
 
     mainContent.style.display = "none";
     questionDivision.style.display = "block";
-    // clock.style.display = "block";
+    clock.style.display = "block";
     // timeOver.style.display = "none";
 
     var startClock = setInterval(function() {
@@ -84,35 +84,65 @@ function startQuiz(){
 
         }, 1000);
 
-        // showQuiz();
+        displayQuiz();
 
 }
 
-//  console.log(questions[qIndex].question);
-//  console.log(questions[qIndex].choices);
 
 
+function displayQuiz(){
+    questionsFun();
+}
 
-// function showQuiz(){
-//     nextQuestion();
-// }
+function questionsFun(){
 
+    quizQuestion.textContent = questions[0].question;
+    answerA.textContent = questions[0].choices[0]
+    answerB.textContent = questions[0].choices[1]
+    answerC.textContent = questions[0].choices[2]
+    answerD.textContent = questions[0].choices[3]
 
-// function nextQuestion() {
-//     quizQuestion.textContent = questions[qIndex].question;
-//     answerA.textContent = questions[qIndex].choices[0];
-//     answerB.textContent = questions[qIndex].choices[1];
-//     answerC.textContent = questions[qIndex].choices[2];
-//     answerD.textContent = questions[qIndex].choices[3];
-// }
+}
+function checkAnswer(answer) {
 
+    answerCheck.style.display= "block"
 
+    if (questions[qIndex].answer === questions[qIndex].choices[answer]) {
+        // rightAns++
+        answerCheck.textContent = "Correct";
+        console.log(rightAns);
+    } else {
+        totalTime -= 15;
+        timeRemaining.textContent = totalTime;
+        answerCheck.textContent = "Wrong";
+    }
+        
+        qIndex++;
+    if (qIndex < questions.length){
+        questionsFun();
+    } else {
+        alert("game over");
+    }
 
+}
 
+function chooseA() { checkAnswer(0); }
+
+function chooseB() { checkAnswer(1); }
+
+function chooseC() { checkAnswer(2); }
+
+function chooseD() { checkAnswer(3); }
 
 
 
 startButton.addEventListener("click", startQuiz);
+answerA.addEventListener("click", chooseA);
+answerB.addEventListener("click", chooseB);
+answerC.addEventListener("click", chooseC);
+answerD.addEventListener("click", chooseD);
+
+
 
 
 
