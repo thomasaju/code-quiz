@@ -57,7 +57,7 @@ var totalTime = 80;
 
 function startQuiz(){
     qIndex = 0;
-    totalTime= 20;
+    totalTime= 80;
     timeRemaining.textContent = totalTime;
     nameInput.textContent = "";
 
@@ -71,9 +71,12 @@ function startQuiz(){
             timeRemaining.textContent = totalTime;
             if (totalTime === 0){
                 clearInterval(startClock);
-                // if (qIndex < questions.length - 1){
-                //     quizFinished()
-                // }
+                timeOver.style.display = "block";
+                quizFinished()
+
+                if (qIndex <= questions.length){
+                    quizFinished()
+                }
             }
 
         }, 1000);
@@ -132,57 +135,8 @@ function quizFinished(){
     finalPage.style.display = "block";
     finalScore.textContent = rightAns;//to show the score
     console.log(rightAns);
-    
-    
-}
-
-localStorage.setItem("finalscore", rightAns);
-
-
-
-
-function setScores(event){
-    event.preventDefault();
-
-    if (nameInput.value === ""){
-        alert("Enter your Name");
-       return;
-    }
-
-    var savedScores = localStorage.getItem("scores");
-    var scoresArray;
-    if (savedScores === null){
-        scoresArray = [];
-    } else {
-        scoresArray = JSON.parse(savedScores)
-    }
-    var userScore = {
-        name: nameInput.value,
-        score: finalScore.textContent
-    };
-    console.log(userScore);
-
-
-
-
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
