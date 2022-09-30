@@ -83,6 +83,9 @@ img{
     margin: 0px 340px;
 }
 
+.hidden{
+    display: none;
+}
 
 /* Button generator from cssbuttongenerator.com */
 
@@ -105,9 +108,9 @@ img{
     font-size: 38px;
     padding: 8px 20px 10px 20px;
     text-decoration: none;
-  }
+}
   
-  #start-button:hover {
+#start-button:hover {
     background: #fcfcfc;
   background-image: -webkit-linear-gradient(top, #fcfcfc, #b2dbf7);
   background-image: -moz-linear-gradient(top, #fcfcfc, #b2dbf7);
@@ -115,8 +118,5 @@ img{
   background-image: -o-linear-gradient(top, #fcfcfc, #b2dbf7);
   background-image: linear-gradient(to bottom, #fcfcfc, #b2dbf7);
   text-decoration: none;
-  }
-
-.hidden{
-   display: none;
 }
+
