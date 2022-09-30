@@ -258,5 +258,4 @@ clearScoreBtn.addEventListener("click",function(event){
     event.preventDefault();
     localStorage.removeItem("scores");
     
-
 });
