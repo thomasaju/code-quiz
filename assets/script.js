@@ -1,3 +1,4 @@
+//created 
 var clock = document.querySelector("#clock");
 var timeRemaining = document.querySelector("#timeRemaining");
 var timeOver = document.querySelector("#timeOver");
@@ -240,8 +241,32 @@ submitNameBtn.addEventListener("click", function(event){
 });
 
 
-// highScore.addEventListener("click", function(event) { 
-//     scoreList(event);
-// });
+highScore.addEventListener("click", function(event) { 
+    scoreList(event);
+});
 
-backBtn.addEventListener("click")
+backBtn.addEventListener("click",function(){
+    mainContent.style.display = "block";
+    highScoreList.style.display = "none";
+    finalPage.style.display = "none";
+    answerCheck.style.display = "none";
+    clock.style.display = "none";
+    quizQuestion.style.display = "none";
+    questionDivision.style.display="none";
+    finalScore.style.display="none";
+    submitNameBtn.style.display="none";
+})
+clearScoreBtn.addEventListener("click",function(){
+    mainContent.style.display = "block";
+    highScoreList.style.display = "none";
+    finalPage.style.display = "none";
+    answerCheck.style.display = "none";
+    clock.style.display = "none";
+    quizQuestion.style.display = "none";
+    questionDivision.style.display="none";
+    finalScore.style.display="none";
+    submitNameBtn.style.display="none";
+    localStorage.removeItem("score")
+})
+
+
