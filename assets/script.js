@@ -1,4 +1,4 @@
-//created variables for all the content by using querySelector
+//created variables for all the elements by using querySelector
 var clock = document.querySelector("#clock");
 var timeRemaining = document.querySelector("#timeRemaining");
 var timeOver = document.querySelector("#timeOver");
@@ -14,7 +14,7 @@ var answerCheck = document.querySelector("#answerCheck");
 var finalPage = document.querySelector("#final-page");
 var submitNameBtn = document.querySelector("#submitNameBtn");
 var nameInput = document.querySelector("#nameInput");
-var highScoreList = document.querySelector("#highScoreList");
+var fullScoreList = document.querySelector("#fullScoreList");
 var finalScore = document.querySelector("#finalScore");
 var backBtn = document.querySelector("#backBtn");
 var clearScoreBtn = document.querySelector("#clearScoreBtn");
@@ -129,27 +129,27 @@ function quizFinished(){
 }
 
 
-
+//
 function viewHighScores(event){
-    event.preventDefault();
+    event.preventDefault(); // preventing the default function otherwise it will send to database
 
-    if(nameInput.value === ""){ // if there is an empty entry.
+    if(nameInput.value === ""){ // if there is an empty entry then shows an alert.
         alert("Enter your name, you can't leave this blank");
         return;
     };
+    mainContent.style.display = "none";
+    
+
+   var localHighScores = localStorage.getItem("Scores"); //scores is the name of the key to retrieve the value.
+   var scores; //empty variable to add values into
 
 
 
-   var localHighScores = localStorage.getItem("Scores");
-   var scores;
 
-//    console.log(localHighScores);
-
-
-   if (localHighScores=== null){
-    scores=[];
+   if (localHighScores === null){
+    scores=[]; 
    } else{
-    scores= JSON.parse(localHighScores)
+    scores= JSON.parse(localHighScores); // exchange data to/from a web server.When receiving data is always a strin
    }
 
    var individualSCores = {
@@ -159,7 +159,7 @@ function viewHighScores(event){
    console.log(individualSCores);
    scores.unshift(individualSCores);
 
-
+//stringify the variable for local storage
    var scoresArray = JSON.stringify(scores);
    console.log(scoresArray);
    localStorage.setItem("scores", scoresArray);
@@ -170,28 +170,28 @@ function viewHighScores(event){
 }
 
 
-
+//function to show scores
 function scoreList(){
-    highScoreList.style.display = "block";
+    fullScoreList.style.display = "block";
     mainContent.style.display = "none";
 
     var localStoredScore = localStorage.getItem("scores");
 
-if(localStoredScore === null){
+    if(localStoredScore === null){
     return;
-}
-console.log(localStoredScore);
+    }
+    console.log(localStoredScore);
 
 
 
 
-var localystored = JSON.parse(localStoredScore);
+    var localystored = JSON.parse(localStoredScore);
 
-for (var i=0;i < localystored.length; i++){
+    for (var i=0;i < localystored.length; i++){
     var personalSCore = document.createElement("h6");
     personalSCore.innerHTML = ("Name: " + localystored[i].name + " Score :" + localystored[i].score);
     listScores.appendChild(personalSCore);
-}
+    }
 
 }
 
@@ -206,7 +206,7 @@ for (var i=0;i < localystored.length; i++){
 
 
 
-
+//functions for checking answer: it goes to line 94 with an argument when the click happens on any of four options.
 
 function optionA() { checkAnswer(0); }
 
@@ -217,25 +217,30 @@ function optionC() { checkAnswer(2); }
 function optionD() { checkAnswer(3); }
 
 
-
+//AddeEventListener for the start button. -- goes to line 59
 startButton.addEventListener("click", startQuiz);
+
+//AddeEventListener for the four options button. goes to line (211-217).
 answerA.addEventListener("click", optionA);
 answerB.addEventListener("click", optionB);
 answerC.addEventListener("click", optionC);
 answerD.addEventListener("click", optionD);
 
+//AddeEventListener for the name submit button. goes to line 133.
 submitNameBtn.addEventListener("click", function(event){
     viewHighScores(event);
 });
 
-
+//AddeEventListener for the score. goes to line 133.
 highScore.addEventListener("click", function(event) { 
     scoreList(event);
 });
+//AddeEventListener to back button with function
 
 backBtn.addEventListener("click",function(){
+    event.preventDefault();
     mainContent.style.display = "block";
-    highScoreList.style.display = "none";
+    fullScoreList.style.display = "none";
     finalPage.style.display = "none";
     answerCheck.style.display = "none";
     clock.style.display = "none";
@@ -246,4 +251,12 @@ backBtn.addEventListener("click",function(){
 })
 
 
+//AddeEventListener to clear button with function
 
+
+clearScoreBtn.addEventListener("click",function(event){
+    event.preventDefault();
+    localStorage.removeItem("scores");
+    
+
+});
