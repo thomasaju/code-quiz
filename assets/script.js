@@ -21,25 +21,25 @@ var highScore = document.querySelector("#highScore");
 var listScores = document.querySelector("#listScores");
 var optionList = document.querySelector("#option-list");
 
-var questions =[    //created 
+var questions =[    //created questions.question
 {
     question : "Javascript is an _______ language?",
-    choices : ["Object-Oriented","Object_Based", "Procedural", "None of the Above"],
+    options : ["Object-Oriented","Object_Based", "Procedural", "None of the Above"],
     answer : "Object-Oriented"
 },
 {
     question : "Which of the following keywords is used to define a variable in Javascript?",
-    choices : ["Var","Let", "Both A & B", "None of the Above"],
+    options  : ["Var","Let", "Both A & B", "None of the Above"],
     answer : "Both A & B"
 },
 {
     question : "How can a datatype be declared to be a constant type?",
-    choices : ["Const","Var", "Let", "None of the Above"],
+    options : ["Const","Var", "Let", "None of the Above"],
     answer : "Const"
 },
 {
     question : "Which of the following are closures in Javascript?",
-    choices : ["Variables","Functions", "Objects", "All of the above"],
+    options : ["Variables","Functions", "Objects", "All of the above"],
     answer : "All of the above"
 },
 ];
@@ -94,17 +94,17 @@ function displayQuiz(){
 function questionsFun(){
 
     quizQuestion.textContent = questions[qIndex].question;
-    answerA.textContent = questions[qIndex].choices[0]
-    answerB.textContent = questions[qIndex].choices[1]
-    answerC.textContent = questions[qIndex].choices[2]
-    answerD.textContent = questions[qIndex].choices[3]
+    answerA.textContent = questions[qIndex].options[0]
+    answerB.textContent = questions[qIndex].options[1]
+    answerC.textContent = questions[qIndex].options[2]
+    answerD.textContent = questions[qIndex].options[3]
 
 }
 function checkAnswer(answer) {
 
     answerCheck.style.display= "block"
 
-    if (questions[qIndex].answer === questions[qIndex].choices[answer]) {
+    if (questions[qIndex].answer === questions[qIndex].options[answer]) {
         rightAns++
         answerCheck.textContent = "Correct";
         console.log(rightAns);
@@ -126,6 +126,7 @@ function checkAnswer(answer) {
 
 function quizFinished(){
     quizQuestion.style.display = "none";
+    // summary.style.display = "block";
     answerCheck.style.display = "none";
     optionList.style.display= "none";
     clock.style.display = "none";
@@ -137,6 +138,76 @@ function quizFinished(){
     console.log(rightAns);
 
 }
+
+
+
+function viewHighScores(event){
+    event.preventDefault();
+
+    if(nameInput.value === ""){
+        alert("Enter your name, you can't leave this blank");
+        return;
+    };
+
+
+
+   var localHighScores = localStorage.getItem("Scores");
+   var scores;
+
+//    console.log(localHighScores);
+
+
+   if (localHighScores=== null){
+    scores=[];
+   } else{
+    scores= JSON.parse(localHighScores)
+   }
+
+   var individualSCores = {
+    name:nameInput.value,
+    score: finalScore.textContent
+   };
+   console.log(individualSCores);
+   scores.unshift(individualSCores);
+
+
+   var scoresArray = JSON.stringify(scores);
+   console.log(scoresArray);
+   localStorage.setItem("scores", scoresArray);
+
+
+   scoreList();
+
+}
+
+
+
+function scoreList(){
+    highScoreList.style.display = "block";
+    mainContent.style.display = "none";
+
+    var localStoredScore = localStorage.getItem("scores");
+
+if(localStoredScore === null){
+    return;
+}
+console.log(localStoredScore);
+
+
+
+
+var localystored = JSON.parse(localStoredScore);
+
+for (var i=0;i < localystored.length; i++){
+    var personalSCore = document.createElement("h6");
+    personalSCore.innerHTML = ("Name: " + localystored[i].name + " Score :" + localystored[i].score);
+    listScores.appendChild(personalSCore);
+}
+
+}
+
+
+   
 
 
 
@@ -164,9 +235,13 @@ answerB.addEventListener("click", optionB);
 answerC.addEventListener("click", optionC);
 answerD.addEventListener("click", optionD);
 
-// submitNameBtn.addEventListener("click", function(event);
+submitNameBtn.addEventListener("click", function(event){
+    viewHighScores(event);
+});
 
 
+// highScore.addEventListener("click", function(event) { 
+//     scoreList(event);
+// });
 
-
-
+backBtn.addEventListener("click")
