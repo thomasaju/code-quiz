@@ -1,4 +1,4 @@
-//created 
+//created variables for all the content by using querySelector
 var clock = document.querySelector("#clock");
 var timeRemaining = document.querySelector("#timeRemaining");
 var timeOver = document.querySelector("#timeOver");
@@ -50,48 +50,36 @@ var questions =[    //created questions.question
 
 
 
-//WHN START BUTTON CLICK THE CLOCK INITIATED
-var rightAns = 0;
+var rightAns = 0; //starting from zero after each question is right this will increment.
 var qIndex = 0;
-var totalTime = 80;
+var totalTime = 80; 
 
+//First Function when StartQuiz Button Initiated
 
 function startQuiz(){
-    qIndex = 0;
-    totalTime= 80;
+
     timeRemaining.textContent = totalTime;
-    nameInput.textContent = "";
-
     mainContent.style.display = "none";
-    questionDivision.style.display = "block";
-    clock.style.display = "block";
-    // timeOver.style.display = "none";
+    questionDivision.style.display = "block"; //QuestionDivision is visible
 
+    //created a setInterval Function 
     var startClock = setInterval(function() {
-            totalTime --;
-            timeRemaining.textContent = totalTime;
+            totalTime --; // decrement of 1 second
+            timeRemaining.textContent = totalTime; //shows the remaining time in timeremaining.
             if (totalTime === 0){
-                clearInterval(startClock);
-                timeOver.style.display = "block";
+                clearInterval(startClock); // When time reaches Zero ,clearinterval function
+                timeOver.style.display = "block"; // It is hidden by default from html and css
                 quizFinished()
 
-                if (qIndex <= questions.length){
-                    quizFinished()
-                }
             }
 
-        }, 1000);
+        }, 1000); //milliseconds
 
-        displayQuiz();
+        questionsFun();
 
 }
 
-
-
-function displayQuiz(){
-    questionsFun();
-}
-
+//shows Qyestions and options
 function questionsFun(){
 
     quizQuestion.textContent = questions[qIndex].question;
@@ -101,41 +89,41 @@ function questionsFun(){
     answerD.textContent = questions[qIndex].options[3]
 
 }
+
+
 function checkAnswer(answer) {
 
-    answerCheck.style.display= "block"
+    answerCheck.style.display= "block"; //// It is hidden by default from html and css
 
     if (questions[qIndex].answer === questions[qIndex].options[answer]) {
         rightAns++
-        answerCheck.textContent = "Correct";
+        answerCheck.textContent = "Correct";// pushing the word Correct to answerCheck
         console.log(rightAns);
     } else {
-        totalTime -= 15;
-        timeRemaining.textContent = totalTime;
+        totalTime -= 15; // if questions[qIndex].answer !=== questions[qIndex].options[answer], the total time reduced to 15 seconds.
         answerCheck.textContent = "Wrong";
     }
-        qIndex++;
+        qIndex++; //questions index increased to one
 
 
-    if (qIndex < questions.length){
+    if (qIndex < questions.length){ // if the index is less than number questions it goes back to line 83.
         questionsFun();
     } else {
-        quizFinished();
+        quizFinished(); // if the index is greater than number of questions it goes back to line 118
     }
 
 }
 
 function quizFinished(){
     quizQuestion.style.display = "none";
-    // summary.style.display = "block";
     answerCheck.style.display = "none";
     optionList.style.display= "none";
     clock.style.display = "none";
-    var img = document.createElement("img");
+    var img = document.createElement("img"); //created an image showing its over
     img.src = "./Images/over.webp";
-    questionDivision.appendChild(img);
+    questionDivision.appendChild(img); //appended the image to the parent questDivision
     finalPage.style.display = "block";
-    finalScore.textContent = rightAns;//to show the score
+    finalScore.textContent = rightAns; //to show the score in finalScore element 
     console.log(rightAns);
 
 }
@@ -145,7 +133,7 @@ function quizFinished(){
 function viewHighScores(event){
     event.preventDefault();
 
-    if(nameInput.value === ""){
+    if(nameInput.value === ""){ // if there is an empty entry.
         alert("Enter your name, you can't leave this blank");
         return;
     };
