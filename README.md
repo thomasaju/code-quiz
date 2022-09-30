@@ -1,7 +1,7 @@
 
 # code-quiz
 
-This is an online quiz to assess your knowledge in JavaScript in 80 seconds and you can save your score so you can compare with others. 
+This is an online quiz to assess your JavaScript knowledge in 80 seconds and you can save your score so you can compare with others. 
 There is a penalty of 15 seconds for each wrong answer which will be reduced from the time.
 
 # Directions to Use.
