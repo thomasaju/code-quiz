@@ -256,17 +256,6 @@ backBtn.addEventListener("click",function(){
     finalScore.style.display="none";
     submitNameBtn.style.display="none";
 })
-clearScoreBtn.addEventListener("click",function(){
-    mainContent.style.display = "block";
-    highScoreList.style.display = "none";
-    finalPage.style.display = "none";
-    answerCheck.style.display = "none";
-    clock.style.display = "none";
-    quizQuestion.style.display = "none";
-    questionDivision.style.display="none";
-    finalScore.style.display="none";
-    submitNameBtn.style.display="none";
-    localStorage.removeItem("score")
-})
+
 
 
