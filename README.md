@@ -31,6 +31,7 @@ There is a penalty of 15 seconds for each wrong answer which will be reduced fro
  
 
 
+<img width="1313" alt="Screen Shot 2022-09-30 at 4 49 01 pm" src="https://user-images.githubusercontent.com/109736323/193216345-69669522-c2f6-4ea6-a25a-5cee3607f817.png">
 
 
 
